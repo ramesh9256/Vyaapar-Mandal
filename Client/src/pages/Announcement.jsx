@@ -14,7 +14,7 @@ const Announcements = () => {
   useEffect(() => {
     const fetchAnnouncements = async () => {
       try {
-        const res = await API.get('/announcement');
+        const res = await API.get('/announcements');
         setAnnouncements(res.data);
       } catch (err) {
         console.error('Failed to fetch announcements', err);
@@ -36,7 +36,7 @@ const Announcements = () => {
     setSubmitLoading(true);
     setMessage('');
     try {
-      const res = await API.post('/announcement/create', form);
+      const res = await API.post('/announcements/create', form);
       setAnnouncements(prev => [res.data.announcement, ...prev]);
       setForm({ title: '', content: '' });
       setMessage('Announcement created successfully');
