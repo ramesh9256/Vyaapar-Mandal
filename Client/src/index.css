@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+/* In your global CSS file (e.g., styles.css or index.css) */
+
+/* Tailwind utility class for sliding underline effect */
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Sliding underline effect on hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #3182ce; /* Blue color for underline */
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+/* When hovering over a link, the underline will appear */
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.nav-link:hover {
+  color: #3182ce; /* Change text color to blue on hover */
+}
+
+/* For mobile navbar */
+.md:hidden .nav-link {
+  padding: 10px;
+  display: block;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.md:hidden .nav-link:hover {
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #3182ce;
+}
