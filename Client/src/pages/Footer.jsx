@@ -20,7 +20,7 @@ const Footer = () => {
           <h3 className="text-lg font-semibold text-white">Useful Links</h3>
           <a href="/" className="hover:text-white">🏠 Home</a>
           <a href="/about" className="hover:text-white">ℹ️ About</a>
-          <a href="/members" className="hover:text-white">👥 Members</a>
+          <a href="/member" className="hover:text-white">👥 Members</a>
           <a href="/contact" className="hover:text-white">📞 Contact</a>
         </div>
 
