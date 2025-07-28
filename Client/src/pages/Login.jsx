@@ -70,7 +70,7 @@ const Login = () => {
           </div>
 
           {/* Forgot Password link */}
-          <div className="text-right text-sm">
+          {/* <div className="text-right text-sm">
             <button
               type="button"
               onClick={() => navigate('/forgot-password')}
@@ -78,7 +78,7 @@ const Login = () => {
             >
               Forgot Password?
             </button>
-          </div>
+          </div> */}
 
           <button
             type="submit"
