@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes')
 const memberRoutes = require('./routes/memberRoutes')
@@ -17,6 +18,7 @@ const membershipRoutes = require('./routes/membershipRoutes');
 connectDB();
 
 const app = express();
+app.use(cookieParser());
 app.use(cors({
     origin:"https://vyaapar-mandal.onrender.com/",
     credentials:true
