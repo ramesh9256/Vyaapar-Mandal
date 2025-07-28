@@ -1,20 +1,17 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
 
 const authMiddleware = async (req, res, next) => {
   try {
-    const token = req.cookies.token; // ✅ Correct place
+    const authHeader = req.headers.authorization;
 
-    if (!token) {
-      return res.status(401).json({ msg: "Unauthorized - Token missing in cookie" });
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ msg: "Unauthorized - No token" });
     }
+
+    const token = authHeader.split(" ")[1];
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = await User.findById(decoded.userId).select('-password'); // optional
-
-    if (!req.user) {
-      return res.status(404).json({ msg: "User not found" });
-    }
+    req.user = { userId: decoded.userId };
 
     next();
   } catch (err) {

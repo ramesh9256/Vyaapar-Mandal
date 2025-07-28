@@ -22,18 +22,21 @@ const Complaint = () => {
     setLoading(true);
 
     try {
-      const response = await API.post('/complaints', { subject, description });
-      
+      const response = await API.post('/complaints', { subject, description }, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      });
+
       if (response.status === 201) {
         alert('Complaint filed successfully');
         setSubject('');
         setDescription('');
-        
       }
     } catch (error) {
       // Log the error to get more info
       console.error("Error details:", error);
-      
+
       if (error.response) {
         // Check if it's a 400 or 401 error
         if (error.response.status === 401) {
@@ -71,7 +74,7 @@ const Complaint = () => {
       const res = await API.put(`/complaints/${complaintId}/status`, { status: newStatus });
       if (res.status === 200) {
         alert('Complaint status updated');
-        setComplaints(prev => prev.map(complaint => 
+        setComplaints(prev => prev.map(complaint =>
           complaint._id === complaintId ? { ...complaint, status: newStatus } : complaint
         ));
       }
@@ -140,10 +143,9 @@ const Complaint = () => {
                   </td>
                   <td className="px-6 py-2">
                     <span
-                      className={`px-2 py-1 rounded-md text-white ${
-                        complaint.status === 'Pending' ? 'bg-yellow-500' :
-                        complaint.status === 'In Progress' ? 'bg-blue-500' : 'bg-green-500'
-                      }`}
+                      className={`px-2 py-1 rounded-md text-white ${complaint.status === 'Pending' ? 'bg-yellow-500' :
+                          complaint.status === 'In Progress' ? 'bg-blue-500' : 'bg-green-500'
+                        }`}
                     >
                       {complaint.status}
                     </span>

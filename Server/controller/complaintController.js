@@ -3,7 +3,7 @@
     // 📝 Create new complaint
     exports.createComplaint = async (req, res) => {
         try {
-            const { subject, description } = req.body;
+            const { subject, description  } = req.body;
 
             if (!subject || !description) {
                 return res.status(400).json({ msg: "Subject and description are required" });

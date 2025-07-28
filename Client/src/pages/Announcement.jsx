@@ -49,7 +49,7 @@ const Announcements = () => {
 
   if (loading) return <div className="text-center py-6">Loading announcements...</div>;
 
-  console.log("User object:", user);
+  // console.log("User object:", user);
 
   return (
     <div className="max-w-3xl mx-auto p-4">
