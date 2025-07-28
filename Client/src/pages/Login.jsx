@@ -29,16 +29,16 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-100 px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-100 px-4 py-6 sm:py-8">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-white w-full max-w-sm md:max-w-md p-6 md:p-8 rounded-2xl shadow-lg"
+        className="bg-white w-full max-w-sm sm:max-w-sm md:max-w-md p-5 rounded-2xl shadow-lg"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-center text-pink-600 mb-6">Login</h2>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+       <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
               Email

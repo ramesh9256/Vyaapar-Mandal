@@ -78,18 +78,40 @@ const Navbar = () => {
           <Link to="/contact" className="block text-gray-700 hover:text-blue-500" onClick={() => setMenuOpen(false)}>Contact</Link>
 
           {user ? (
-            <button
-              onClick={handleLogout}
-              className="block w-full text-left text-gray-700 hover:text-blue-500"
-            >
-              Logout
-            </button>
+            <>
+              <Link
+                to="/profile"
+                className="block text-gray-700 hover:text-blue-500"
+                onClick={() => setMenuOpen(false)}
+              >
+                Profile
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="block w-full text-left text-gray-700 hover:text-blue-500"
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <>
-              <Link to="/login" className="block text-gray-700 hover:bg-blue-50 py-2" onClick={() => setMenuOpen(false)}>Login</Link>
-              <Link to="/register" className="block text-gray-700 hover:bg-blue-50 py-2" onClick={() => setMenuOpen(false)}>Register</Link>
+              <Link
+                to="/login"
+                className="block text-gray-700 hover:bg-blue-50 py-2"
+                onClick={() => setMenuOpen(false)}
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="block text-gray-700 hover:bg-blue-50 py-2"
+                onClick={() => setMenuOpen(false)}
+              >
+                Register
+              </Link>
             </>
           )}
+
         </div>
       </div>
 

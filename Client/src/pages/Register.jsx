@@ -23,7 +23,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post('/auth/register',{ withCredentials: true }, formData);
+      const res = await API.post('/auth/register', { withCredentials: true }, formData);
       alert(res.data.msg);
       navigate('/login');
     } catch (err) {
@@ -32,18 +32,18 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center px-4 md:px-20 py-10">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center px-4 py-6 sm:py-8">
       <motion.div
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"
+        className="bg-white rounded-2xl shadow-lg p-6 sm:p-7 md:p-8 w-full max-w-sm"
       >
         <h2 className="text-4xl font-bold text-center text-blue-700 mb-8 select-none">
           Register
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
           <div>
             <label htmlFor="name" className="block text-gray-700 font-medium mb-1">
               Name

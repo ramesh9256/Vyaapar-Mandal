@@ -41,13 +41,13 @@ const Contact = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-100 py-6 sm:py-10 px-4">
       <ToastContainer />
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg"
+        className="max-w-md sm:max-w-lg mx-auto bg-white p-5 sm:p-6 md:p-8 rounded-2xl shadow-lg"
       >
         <h2 className="text-3xl font-bold text-center text-blue-800 mb-4">
           संपर्क करें / Contact Us
@@ -56,7 +56,7 @@ const Contact = () => {
           Vyapaar Mandal से जुड़ने के लिए या कोई भी सुझाव देने के लिए नीचे फॉर्म भरें।
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
           <div>
             <label className="block text-gray-700">नाम / Name</label>
             <input
@@ -104,9 +104,8 @@ const Contact = () => {
             whileTap={{ scale: 0.95 }}
             type="submit"
             disabled={loading}
-            className={`w-full bg-blue-600 text-white px-6 py-2 rounded-md font-medium shadow transition ${
-              loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
-            }`}
+            className={`w-full bg-blue-600 text-white px-6 py-2 rounded-md font-medium shadow transition ${loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
+              }`}
           >
             {loading ? 'Sending...' : '📩 Send Message'}
           </motion.button>
