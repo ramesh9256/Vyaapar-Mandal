@@ -18,10 +18,11 @@ const membershipRoutes = require('./routes/membershipRoutes');
 connectDB();
 
 const app = express();
+app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin:"https://vyaapar-mandal.onrender.com/",
+    origin:["https://vyaapar-mandal.vercel.app/","http://localhost:5173/"],
     credentials:true
 }));
 app.get('/api/test', (req, res) => {

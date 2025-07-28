@@ -16,6 +16,6 @@ router.get('/', getAllEvents);
 // Protected & Admin Only Routes
 router.post('/create', authMiddleware, adminMiddleware, createEvent);
 router.put('/update/:id', authMiddleware, adminMiddleware, updateEvent);
-router.delete('/delete/:id', authMiddleware, adminMiddleware, );
+router.delete('/delete/:id', authMiddleware, adminMiddleware,deleteEvent );
 
 module.exports = router;

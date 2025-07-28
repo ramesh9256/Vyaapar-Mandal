@@ -19,13 +19,12 @@ const Home = () => {
   useEffect(() => {
     const fetchEvents = async () => { 
       try {
-        const res = await API.get('/events'); // Update if needed
-        setEvents(res.data); // Show only latest 3 events
+        const res = await API.get('/events');
+        setEvents(res.data);
       } catch (error) {
         console.error('Error fetching events:', error);
       }
     };
-
     fetchEvents();
   }, []);
 
