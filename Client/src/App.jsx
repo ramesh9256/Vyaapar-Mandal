@@ -13,9 +13,9 @@ import Profile from './pages/Profile'
 import ApplyMembership from './pages/ApplyMembership'
 import AdminMembership from './pages/AdminMembership'
 import Announcement from './pages/Announcement'
-// import ScrollToTop  from './components/ScrollToTop '
+import ScrollToTop  from './components/ScrollToTop '
 // import ForgotPassword from './pages/ForgotPassword'
-import VerifyOTP from './pages/VerifyOTP'
+// import VerifyOTP from './pages/VerifyOTP'
 
 function App() {
   return (
