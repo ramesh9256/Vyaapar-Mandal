@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';  // Add this line at the top of your axios.js f
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://vyaapar-mandal.onrender.com/api',
+  baseURL:'https://vyaapar-mandal.onrender.com/api',
   withCredentials:true,
   headers: {
     'Content-Type': 'application/json',

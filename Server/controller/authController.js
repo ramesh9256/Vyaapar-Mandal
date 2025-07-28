@@ -44,7 +44,7 @@ exports.loginUser = async (req, res) => {
         res.cookie("token", token, {
             httpOnly: true,
             maxAge: 7 * 24 * 60 * 60 * 1000,
-            sameSite: "strict",
+            sameSite: "none",
             secure: false
         })
 
@@ -65,11 +65,64 @@ exports.loginUser = async (req, res) => {
 // Profile route (protected)
 exports.getProfile = async (req, res) => {
     try {
-        const user = await User.findById(req.user.userId).select('-password');
-        if (!user) return res.status(404).json({ msg: "User not found" });
+        const token = req.cookies.token;
+        if (!token) return res.status(401).json({ message: "Unauthorized" });
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await User.findById(decoded.id).select("-password");
+
+        if (!user) return res.status(404).json({ message: "User not found" });
 
         res.status(200).json(user);
     } catch (err) {
-        res.status(500).json({ msg: "Error fetching profile", error: err.message });
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+exports.forgotPassword = async (req, res) => {
+    try {
+        const { email } = req.body;
+        const user = await User.findOne({ email });
+        if (!user) return res.status(404).json({ msg: "User not found" });
+
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
+        const otpExpiry = Date.now() + 5 * 60 * 1000; // 5 min
+
+        user.otp = otp;
+        user.otpExpiry = otpExpiry;
+        await user.save();
+
+        await sendEmail(user.email, "OTP for Password Reset", `
+            <h3>Hello ${user.name},</h3>
+            <p>Your OTP for resetting password is: <b>${otp}</b></p>
+            <p>It will expire in 5 minutes.</p>
+        `);
+
+        res.status(200).json({ msg: "OTP sent to your email" }) ;
+    } catch (err) {
+        res.status(500).json({ msg: "Error sending OTP", error: err.message });
+    }
+};
+
+// ✅ Reset Password via OTP
+exports.resetPasswordWithOtp = async (req, res) => {
+    try {
+        const { email, otp, newPassword } = req.body;
+
+        const user = await User.findOne({ email });
+        if (!user) return res.status(404).json({ msg: "User not found" });
+
+        if (user.otp !== otp || Date.now() > user.otpExpiry) {
+            return res.status(400).json({ msg: "Invalid or expired OTP" });
+        }
+
+        user.password = await bcrypt.hash(newPassword, 10);
+        user.otp = null;
+        user.otpExpiry = null;
+        await user.save();
+
+        res.status(200).json({ msg: "Password reset successful" });
+    } catch (err) {
+        res.status(500).json({ msg: "Reset failed", error: err.message });
     }
 };

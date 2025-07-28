@@ -14,6 +14,8 @@ import ApplyMembership from './pages/ApplyMembership'
 import AdminMembership from './pages/AdminMembership'
 import Announcement from './pages/Announcement'
 import ScrollToTop  from './components/ScrollToTop '
+import ForgotPassword from './pages/ForgotPassword'
+import VerifyOTP from './pages/VerifyOTP'
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword/>} />
+          <Route path="/verify-otp" element={<VerifyOTP/>} />
+
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/complaint" element={<Complaint />} />

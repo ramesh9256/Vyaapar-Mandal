@@ -23,7 +23,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post('/auth/register', formData);
+      const res = await API.post('/auth/register',{ withCredentials: true }, formData);
       alert(res.data.msg);
       navigate('/login');
     } catch (err) {

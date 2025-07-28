@@ -9,13 +9,14 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  // Fetch user profile on mount
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const res = await API.get('/auth/me');
         setUser(res.data);
       } catch (err) {
-        console.error('Failed to fetch profile', err);
+        console.error('failed to fetch profile', err);
         navigate('/login');
       } finally {
         setLoading(false);
@@ -44,33 +45,12 @@ const Profile = () => {
             <p className="text-gray-500 text-sm mb-6">{user.email}</p>
 
             <div className="w-full space-y-3">
-              {/* Always show "Apply for Membership" */}
               <button
-                onClick={() => navigate('/membership/apply')}
+                onClick={() => navigate('/edit-profile')}
                 className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
               >
-                Apply for Membership
+                Edit Profile
               </button>
-
-              {/* Only for admin users */}
-              {user.role === 'admin' && (
-                <>
-                  <button
-                    onClick={() => navigate('/membership/all')}
-                    className="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
-                  >
-                    View All Applications
-                  </button>
-                  <button
-                    onClick={() => navigate('/membership/manage')}
-                    className="w-full px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition"
-                  >
-                    Manage Applications
-                  </button>
-                </>
-              )}
-
-              {/* Logout */}
               <button
                 onClick={handleLogout}
                 className="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition"

@@ -18,13 +18,15 @@ const membershipRoutes = require('./routes/membershipRoutes');
 connectDB();
 
 const app = express();
+app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     origin:"https://vyaapar-mandal.onrender.com/",
     credentials:true
 }));
-app.use(express.json());
-
+app.get('/api/test', (req, res) => {
+  res.send("API is working");
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/members', memberRoutes);
 app.use('/api/events', eventRoutes);
